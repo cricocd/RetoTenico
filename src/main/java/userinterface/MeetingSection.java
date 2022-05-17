@@ -8,6 +8,13 @@ import org.openqa.selenium.By;
 @DefaultUrl("https://serenity.is/demo/Meeting/Meeting")
 
 public class CreateMeeting extends PageObject {
+
+    public static final Target MEETING_BUTTON = Target.the("donde validamos el nombre de la nueva unidad").locatedBy(
+            "//*[@id=\"nav_menu1_3\"]/li[2]/a/span");
+
+    public static final Target MEETINGS_BUTTON = Target.the("donde validamos el nombre de la nueva unidad").locatedBy(
+            "//*[@id=\"nav_menu1_3_2\"]/li[1]/a/span");
+
     public static final Target CREATE_MEETING_BUTTON = Target.the("Boton para crear una reunion").locatedBy(
             "//*[@id=\"GridDiv\"]/div[2]/div[2]/div/div/div[1]/div/span");
 

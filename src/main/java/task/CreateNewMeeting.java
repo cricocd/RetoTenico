@@ -7,10 +7,10 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.actions.SelectFromOptions;
 import userinterface.CreateMeeting;
-import userinterface.StartSharpPage;
+
 
 public class NewMeeting implements Task {
-    private StartSharpPage startSharpPage;
+
     private CreateMeeting createMeeting;
 
     private String unidadNegocio;
@@ -60,81 +60,45 @@ public class NewMeeting implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(CreateMeeting.CREATE_MEETING_BUTTON),
-                //meeting name
-                Enter.theValue(nombreMeet).into(CreateMeeting.INPUT_MEETING_NAME),
 
-                //meeting type
+                Click.on(CreateMeeting.MEETING_BUTTON),
+                Click.on(CreateMeeting.MEETINGS_BUTTON),
+                Click.on(CreateMeeting.CREATE_MEETING_BUTTON),
+                Enter.theValue(nombreMeet).into(CreateMeeting.INPUT_MEETING_NAME),
                 Click.on(CreateMeeting.SELECT_MEETING_TYPE),
                 Enter.theValue(tipo).into(CreateMeeting.INPUT_NAME_MEETING_TYPE),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_TYPE),
-
-                //meeting number
                 Enter.theValue(numeroMeet).into(CreateMeeting.INPUT_MEETING_NUMBER),
-
-                //meeting start date
                 Click.on(CreateMeeting.START_CALENDAR_BUTTON),
                 SelectFromOptions.byVisibleText(mesInicio).from(CreateMeeting.START_MONTH_LIST),
                 Click.on(CreateMeeting.SELECT_START_DAY_BUTTON),
                 SelectFromOptions.byVisibleText(horaInicio).from(CreateMeeting.START_TIME_LIST),
-
-                //meeting final date
                 Click.on(CreateMeeting.FINAL_CALENDAR_BUTTON),
                 SelectFromOptions.byVisibleText(mesFin).from(CreateMeeting.FINAL_MONTH_LIST),
                 Click.on(CreateMeeting.SELECT_FINAL_DAY_BUTTON),
                 SelectFromOptions.byVisibleText(horaFin).from(CreateMeeting.FINAL_TIME_LIST),
-
-                //meeting localization
                 Click.on(CreateMeeting.SELECT_MEETING_LOCATION),
                 Enter.theValue(localizacionMeet).into(CreateMeeting.INPUT_NAME_MEETING_LOCATION),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_LOCATION),
-
-                //meeting unit
                 Click.on(CreateMeeting.SELECT_MEETING_UNIT),
                 Enter.theValue(unidadNegocio).into(CreateMeeting.INPUT_NAME_MEETING_UNIT),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_UNIT),
-
-                //meeting owner
                 Click.on(CreateMeeting.SELECT_MEETING_OWNER),
                 Enter.theValue(anfitrionMeet).into(CreateMeeting.INPUT_NAME_MEETING_OWNER),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_OWNER),
-
-                //meeting reporter
                 Click.on(CreateMeeting.SELECT_MEETING_REPORTED),
                 Enter.theValue(reporteroMeet).into(CreateMeeting.INPUT_NAME_MEETING_REPORTED),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_REPORTED),
-
-                //meeting attendee
                 Click.on(CreateMeeting.SELECT_MEETING_ATTENDEE),
                 Enter.theValue(invitadosMeet).into(CreateMeeting.INPUT_NAME_MEETING_ATTENDEE),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_ATTENDEE),
-
-                //meeting attendee type
                 Click.on(CreateMeeting.SELECT_MEETING_ATTENDEE_TYPE),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_ATTENDEE_TYPE),
-
-                //meeting attendee status
                 Click.on(CreateMeeting.SELECT_MEETING_ATTENDEE_STATUS),
                 Click.on(CreateMeeting.INPUT_SELECT_MEETING_ATTENDEE_STATUS),
-
-                //meeting save
                 Click.on(CreateMeeting.SAVE_BUTTON),
-
-                //meeting search
                 Click.on(CreateMeeting.SEARCH_BUTTON),
                 Enter.theValue(nombreMeet).into(CreateMeeting.SEARCH_BUTTON)
-
-
-
-
-
-
-
-
-
-                );
-
-
-
+        );
     }
 }

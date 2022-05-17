@@ -6,11 +6,7 @@ import net.thucydides.core.annotations.DefaultUrl;
 
 @DefaultUrl("https://serenity.is/demo/Account/Login/?ReturnUrl=%2Fdemo%2F")
 
-public class StartSharpPage extends PageObject {
-
-    //login
-    public static final Target SIGN_IN_BUTTON = Target.the("Boton para iniciar sesion").locatedBy(
-            "//*[@id=\"StartSharp_Membership_LoginPanel0_LoginButton\"]");
+public class BussinesUnit extends PageObject {
 
     //organization button
     public static final Target ORGANIZATION_BUTTON = Target.the("Boton para acceder al componente de organizaciones").locatedBy(
