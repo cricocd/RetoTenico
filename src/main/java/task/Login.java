@@ -28,8 +28,8 @@ public class Login implements Task {
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
                 Open.browserOn(loginSection),
-                /*Enter.theValue(startSharpDataList.get(0).getUsuario()).into(INPUT_NAME_LOGIN),
-                Enter.theValue(startSharpDataList.get(0).getContrasena()).into(INPUT_PASSWORD_LOGIN),*/
+                Enter.theValue(startSharpDataList.get(0).getUsuario()).into(INPUT_NAME_LOGIN),
+                Enter.theValue(startSharpDataList.get(0).getContrasena()).into(INPUT_PASSWORD_LOGIN),
                 Click.on(SIGN_IN_BUTTON)
         );
 
