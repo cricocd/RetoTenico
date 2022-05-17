@@ -59,10 +59,8 @@ public class CreateNewMeeting implements Task {
                 Click.on(SELECT_MEETING_ATTENDEE),
                 Enter.theValue(startSharpDataList.get(0).getInvitadosMeet()).into(INPUT_NAME_MEETING_ATTENDEE),
                 Click.on(INPUT_SELECT_MEETING_ATTENDEE),
-                Click.on(SELECT_MEETING_ATTENDEE_TYPE),
-                Click.on(INPUT_SELECT_MEETING_ATTENDEE_TYPE),
-                Click.on(SELECT_MEETING_ATTENDEE_STATUS),
-                Click.on(INPUT_SELECT_MEETING_ATTENDEE_STATUS),
+                SelectFromOptions.byVisibleText(startSharpDataList.get(0).getTipoInvitado()).from(SELECT_MEETING_ATTENDEE_TYPE),
+                SelectFromOptions.byVisibleText(startSharpDataList.get(0).getEstadoInvitado()).from(SELECT_MEETING_ATTENDEE_STATUS),
                 Click.on(SAVE_BUTTON),
                 Click.on(SEARCH_BUTTON),
                 Enter.theValue(startSharpDataList.get(0).getNombreMeet()).into(SEARCH_BUTTON)

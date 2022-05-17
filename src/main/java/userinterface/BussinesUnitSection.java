@@ -19,11 +19,11 @@ public class BussinesUnitSection extends PageObject {
     public static final Target INPUT_NAME_UNIT = Target.the("donde escribimos a cual unidad de negocio pertenece").locatedBy(
             "//div[@role='dialog']//div[2]//div//div[2]//form//div//div//div//div//div//input[@name='Name']");
     public static final Target INPUT_UNIT = Target.the("donde elegimos a cual unidad de negocio pertenece").locatedBy(
-            "/html/body/div[4]/div[2]/div/div[2]/form/div/div[1]/div/div/div[2]/div[1]/a");
+            "//div[@role=\"dialog\"][2]/div[2]/div/div[2]/form/div/div[1]/div/div/div[2]/div[1]/a/span[1]");
     public static final Target INPUT_SELECT_UNIT = Target.the("donde seleccionamos a cual unidad de negocio pertenece").locatedBy(
             "//div[@id=\"select2-drop\"]/ul/li");
     public static final Target SAVE_BUTTON = Target.the("donde guardamos la nueva unidad").locatedBy(
-            "/html/body/div[4]/div[2]/div/div[1]/div/div/div/div[1]");
+            "//div[@role=\"dialog\"][2]/div[2]/div/div[1]/div/div/div/div[1]/div/span");
     public static final Target SEARCH_BUTTON = Target.the("donde buscamos la nueva unidad").locatedBy(
             "//*[@id=\"GridDiv\"]/div[2]/div[1]/input");
     public static final Target INPUT_SEARCH = Target.the("donde escrbimos la nueva unidad").locatedBy(
