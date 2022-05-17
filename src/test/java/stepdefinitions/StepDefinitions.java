@@ -4,20 +4,15 @@ import cucumber.api.java.Before;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
-import interactions.OpenBussinesUnit;
-import interactions.OpenMeeting;
-import interactions.OpenMeetings;
-import interactions.OpenOrganization;
 import model.StartSharpData;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import questions.Answer;
-import questions.AnswerMeeting;
+import questions.NameBussinesUnit;
+import questions.NameMeeting;
 import task.Login;
-import task.NewBussinesUnit;
-import task.NewMeeting;
-
+import task.CreateNewBussinesUnit;
+import task.CreateNewMeeting;
 import java.util.List;
 
 
@@ -28,88 +23,33 @@ public class StepDefinitions {
         OnStage.setTheStage(new OnlineCast());
     }
 
-    @Dado("^que Chris tiene una cuenta activa en la aplicacion$")
-    public void queChrisTieneUnaCuentaActivaEnLaAplicacion()  {
+    @Dado("^Chris tiene una cuenta activa en la aplicacion$")
+    public void chrisTieneUnaCuentaActivaEnLaAplicacion()  {
     }
 
-    @Cuando("^Chris se loguea correctamente en la pagina$")
-    public void chrisSeLogueaCorrectamenteEnLaPagina()  {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                Login.inThePage());
-
+    @Dado("^se loguea correctamente en la pagina con sus credenciales$")
+    public void seLogueaCorrectamenteEnLaPaginaConSusCredenciales(List<StartSharpData> credentials)  {
+        OnStage.theActorCalled("Chris").wasAbleTo(Login.inThePageWithThe(credentials));
     }
 
-    @Cuando("^da clic en organizaciones$")
-    public void daClicEnOrganizaciones()  {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                OpenOrganization.openUp());
+    @Cuando("^el se dirige a la seccion de unidades de negocio para crear una nueva unidad ingresando la informacion requerida$")
+    public void elSeDirigeALaSeccionDeUnidadesDeNegocioParaCrearUnaNuevaUnidadIngresandoLaInformacionRequerida(List<StartSharpData> information) {
+        OnStage.theActorInTheSpotlight().attemptsTo(CreateNewBussinesUnit.withThe(information));
     }
 
-    @Cuando("^da clic en unidades de negocio$")
-    public void daClicEnUnidadesDeNegocio()  {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                OpenBussinesUnit.openUp());
-
+    @Entonces("^la unidad de negocio (.*) se crea correctamente$")
+    public void laUnidadDeNegocioTestingSeCreaCorrectamente(String created) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(NameBussinesUnit.isEqualToThe(created)));
     }
 
-    @Cuando("^da clic crear nueva unidad de negocio$")
-    public void daClicCrearNuevaUnidadDeNegocio(List<StartSharpData> startSharpData) {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                NewBussinesUnit.createBU(
-                        startSharpData.get(0).getUnidadNegocio(),
-                        startSharpData.get(0).getNombreBu()
-                ));
-
+    @Cuando("^el se dirige a la seccion de reuniones para agendar una nueva ingresando los parametros solicitados$")
+    public void elSeDirigeALaSeccionDeReunionesParaAgendarUnaNuevaIngresandoLosParametrosSolicitados(List<StartSharpData> parameters)  {
+        OnStage.theActorInTheSpotlight().attemptsTo(CreateNewMeeting.withThe(parameters));
     }
 
-
-    @Entonces("^la unidad de negocio se crea correctamente (.*)$")
-    public void laUnidadDeNegocioSeCreaCorrectamente(String question) {
-        OnStage.theActorCalled("Chris").should(GivenWhenThen.seeThat(Answer.toThe(question)));
-    }
-
-    @Cuando("^da clic en reunion$")
-    public void daClicEnReunion() {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                OpenMeeting.openUp());
-    }
-
-    @Cuando("^da clic en reuniones$")
-    public void daClicEnReuniones()  {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                OpenMeetings.openUp());
-
-
-    }
-
-    @Cuando("^da clic en nueva reunion para crearla$")
-    public void daClicEnNuevaReunionParaCrearla(List<StartSharpData> startSharpData)  {
-        OnStage.theActorCalled("Chris").attemptsTo(
-                NewMeeting.createMeet(
-                        startSharpData.get(0).getUnidadNegocio(),
-                        startSharpData.get(0).getNombreMeet(),
-                        startSharpData.get(0).getTipo(),
-                        startSharpData.get(0).getNumeroMeet(),
-                        startSharpData.get(0).getLocalizacionMeet(),
-                        startSharpData.get(0).getAnfitrionMeet(),
-                        startSharpData.get(0).getReporteroMeet(),
-                        startSharpData.get(0).getInvitadosMeet(),
-                        startSharpData.get(0).getTipoInvitado(),
-                        startSharpData.get(0).getEstadoInvitado(),
-                        startSharpData.get(0).getHoraInicio(),
-                        startSharpData.get(0).getHoraFin(),
-                        startSharpData.get(0).getMesInicio(),
-                        startSharpData.get(0).getMesFin(),
-                        startSharpData.get(0).getDiaInicio(),
-                        startSharpData.get(0).getDiaFin()
-
-                        ));
-
-    }
-
-    @Entonces("^se programa correctamente la nueva reunion (.*)$")
-    public void seProgramaCorrectamenteLaNuevaReunion(String question)  {
-        OnStage.theActorCalled("Chris").should(GivenWhenThen.seeThat(AnswerMeeting.toThe(question)));
+    @Entonces("^se agenda correctamente la nueva reunion (.*)$")
+    public void seAgendaCorrectamenteLaNuevaReunionPlanning(String scheduled)  {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(NameMeeting.isEqualToThe(scheduled)));
     }
 
 }

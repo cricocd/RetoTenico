@@ -2,35 +2,34 @@
 # language: es
 
   @historias
-
   Característica: pruebas en aplicativo startsharp
-    @buescenario1
-    Esquema del escenario: como usuario quiero crear una nueva unidad de negocio en la aplicacion startsharp
-      Dado que Chris tiene una cuenta activa en la aplicacion
-      Cuando  Chris se loguea correctamente en la pagina
-      * da clic en organizaciones
-      * da clic en unidades de negocio
-      * da clic crear nueva unidad de negocio
+
+    Antecedentes:
+      Dado Chris tiene una cuenta activa en la aplicacion
+      Y se loguea correctamente en la pagina con sus credenciales
+      | usuario | contrasena |
+      | admin   | serenity   |
+
+
+    @escenario1
+    Esquema del escenario: crear unidad de negocio
+      Cuando el se dirige a la seccion de unidades de negocio para crear una nueva unidad ingresando la informacion requerida
       | nombreBu   | unidadNegocio   |
       | <nombreBu> | <unidadNegocio> |
-      Entonces la unidad de negocio se crea correctamente <nombreBu>
+      Entonces la unidad de negocio <nombreBu> se crea correctamente
 
 
       Ejemplos:
         | nombreBu  | unidadNegocio |
         | Testing   | test          |
 
-    @reunionescenario1
-    Esquema del escenario: el usuario desea programar una nueva reunion desde su cuenta en startsharp
-      Dado que Chris tiene una cuenta activa en la aplicacion
-      Cuando Chris se loguea correctamente en la pagina
-      * da clic en reunion
-      * da clic en reuniones
-      * da clic en nueva reunion para crearla
+    @escenario2
+    Esquema del escenario: crear nueva reunion
+      Cuando el se dirige a la seccion de reuniones para agendar una nueva ingresando los parametros solicitados
         | unidadNegocio   | nombreMeet   | tipo   | numeroMeet   | localizacionMeet   | anfitrionMeet   | reporteroMeet   | invitadosMeet   | tipoInvitado   | estadoInvitado   | horaInicio   | horaFin   | mesInicio   | mesFin   | diaInicio   | diaFin   |
         | <unidadNegocio> | <nombreMeet> | <tipo> | <numeroMeet> | <localizacionMeet> | <anfitrionMeet> | <reporteroMeet> | <invitadosMeet> | <tipoInvitado> | <estadoInvitado> | <horaInicio> | <horaFin> | <mesInicio> | <mesFin> | <diaInicio> | <diaFin> |
 
-      Entonces se programa correctamente la nueva reunion <nombreMeet>
+      Entonces se agenda correctamente la nueva reunion <nombreMeet>
 
 
       Ejemplos:

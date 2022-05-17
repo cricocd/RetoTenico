@@ -1,37 +1,36 @@
 package task;
 
+import model.StartSharpData;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.EnterValue;
 import net.serenitybdd.screenplay.actions.Open;
-import net.serenitybdd.screenplay.targets.EnsureFieldVisible;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-import net.serenitybdd.screenplay.waits.WaitUntilTargetIsReady;
-import userinterface.StartSharpPage;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isCurrentlyVisible;
-
+import userinterface.LoginSection;
+import java.util.List;
+import static userinterface.LoginSection.*;
 
 public class Login implements Task {
-    private StartSharpPage startSharpPage;
+    private LoginSection loginSection;
+    private List<StartSharpData> startSharpDataList;
 
-    public static Login inThePage() {
-        return Tasks.instrumented(Login.class);
+
+    public Login(List<StartSharpData> credentials) {
+        this.startSharpDataList = credentials;
+    }
+
+    public static Login inThePageWithThe(List<StartSharpData> credentials) {
+        return Tasks.instrumented(Login.class, credentials);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Open.browserOn(startSharpPage),
-                Click.on(StartSharpPage.SIGN_IN_BUTTON)
-                /*Click.on(StartSharpPage.ORGANIZATION_BUTTON),
-                Click.on(StartSharpPage.BU_BUTTOM),
-                Click.on(StartSharpPage.CREATE_BU_BUTTON),
-                WaitUntil.the(StartSharpPage.INPUT_NAME, isCurrentlyVisible()).forNoMoreThan(20).seconds(),
-                Enter.theValue("test").into(StartSharpPage.INPUT_NAME)*/
-
+                Open.browserOn(loginSection),
+                /*Enter.theValue(startSharpDataList.get(0).getUsuario()).into(INPUT_NAME_LOGIN),
+                Enter.theValue(startSharpDataList.get(0).getContrasena()).into(INPUT_PASSWORD_LOGIN),*/
+                Click.on(SIGN_IN_BUTTON)
         );
 
     }

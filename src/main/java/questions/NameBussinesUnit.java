@@ -3,31 +3,28 @@ package questions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.Text;
-import userinterface.BussinesUnitSection;
+import static userinterface.BussinesUnitSection.BU_LIST;
+public class NameBussinesUnit implements Question<Boolean> {
 
-public class Answer implements Question<Boolean> {
+    private String created;
 
-    private String question;
-
-    public Answer(String question) {
-        this.question = question;
+    public NameBussinesUnit(String created) {
+        this.created = created;
     }
 
-    public static Answer toThe(String question) {
-        return new Answer(question);
+    public static NameBussinesUnit isEqualToThe(String created) {
+        return new NameBussinesUnit(created);
     }
-
 
     @Override
     public Boolean answeredBy(Actor actor){
         boolean result;
-        String unitName = Text.of(BussinesUnitSection.BU_LIST).viewedBy(actor).asString();
-        if(question.equals(unitName)){
+        String unitName = Text.of(BU_LIST).viewedBy(actor).asString();
+        if(created.equals(unitName)){
             result = true;
         } else {
             result = false;
         }
         return result;
-
     }
 }

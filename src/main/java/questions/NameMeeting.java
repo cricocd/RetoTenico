@@ -3,26 +3,26 @@ package questions;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.Text;
-import userinterface.MeetingSection;
+import static userinterface.MeetingSection.MEETING_LIST;
 
-public class AnswerMeeting implements Question<Boolean> {
+public class NameMeeting implements Question<Boolean> {
 
-    private String question;
+    private String scheduled;
 
-    public AnswerMeeting(String question) {
-        this.question = question;
+    public NameMeeting(String scheduled) {
+        this.scheduled = scheduled;
     }
 
-    public static AnswerMeeting toThe(String question) {
-        return new AnswerMeeting(question);
+    public static NameMeeting isEqualToThe(String question) {
+        return new NameMeeting(question);
     }
 
 
     @Override
     public Boolean answeredBy(Actor actor){
         boolean result;
-        String meetingName = Text.of(MeetingSection.MEETING_LIST).viewedBy(actor).asString();
-        if(question.equals(meetingName)){
+        String meetingName = Text.of(MEETING_LIST).viewedBy(actor).asString();
+        if(scheduled.equals(meetingName)){
             result = true;
         } else {
             result = false;

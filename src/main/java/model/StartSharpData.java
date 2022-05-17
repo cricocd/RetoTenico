@@ -19,6 +19,24 @@ public class StartSharpData {
     private String mesFin;
     private String diaInicio;
     private String diaFin;
+    private String usuario;
+    private String contrasena;
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 
     public String getNombreBu() {
         return nombreBu;
